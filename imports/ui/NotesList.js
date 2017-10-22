@@ -6,6 +6,8 @@ import NotesListHeader from './NotesListHeader';
 import NotesListItem from './NotesListItem';
 import PropTypes from 'prop-types';
 import NotesListEmptyItem from './NotesListEmptyItem';
+import {Session} from 'meteor/session';
+import Editor from './Editor';
 
 export const NotesList = (props) => {
   const renderList = function(){
@@ -18,6 +20,7 @@ export const NotesList = (props) => {
       <NotesListHeader/>
       {props.notes.length === 0? <NotesListEmptyItem/> : undefined}
       {renderList()}
+      <Editor/>
     </div>
   );
 };
@@ -29,11 +32,27 @@ NotesList.propTypes = {
 export default createContainer(()=>{
   ///fetch the Notes
   //Subscribe to notes that we made in the sever
+  const selectedNoteId = Session.get('selectedNoteId'); //this is the same as autorun so will detect chnagd
   Meteor.subscribe('notes');
   return {
-    notes:Notes.find().fetch()  //all notes that this user has access to
+    notes:Notes.find().fetch().map((note)=>{
+      return {
+        ...note,
+        selected:note._id===selectedNoteId
+      }
+    })
+  //all notes that this user has access to
     //.fetch() gets a cursor to the array
   }
   //return adds notes to the props of the Noteslist!
 
 },NotesList);
+
+//
+// if(note._id === selectedNoteId){
+//   note.selected = true;
+//   return note;
+// }else{
+//   note.selected = false;
+//   return note;
+// }
