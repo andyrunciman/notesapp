@@ -8,8 +8,11 @@ import '../imports/startup/simple-schema-configuration.js';
 
 
 Tracker.autorun(()=>{
-      const isAuthenticated = !!Meteor.userId();
-      onAuthChange(isAuthenticated);
+  const isAuthenticated = !!Meteor.userId();
+  //console.log('authentication changed');
+  const currentPagePrivacy = Session.get('currentPagePrivacy');
+  onAuthChange(isAuthenticated,currentPagePrivacy);
+
 });
 
 Tracker.autorun(()=>{
