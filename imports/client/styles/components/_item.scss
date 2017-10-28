@@ -5,21 +5,45 @@
   overflow-y:scroll;
   width:100%;
 }
-//Item
-.item{ //the box
-  background: $item-bg;
-  border: 1px solid $item-border;
-  margin-bottom: $space;
+
+.item-list__header{
+  display: flex;
+  flex-direction: column;
   padding: $space;
 }
-
-.item__message{
-  color:$item-text-color;
+//Item
+.item{ //the box
+  border-left:$item-border-width solid transparent; //stop the the text moving when the borderi shown
+  cursor: pointer;
+  padding:$space;
+  transition:background-color .5s ease,border-left .5s ease
+}
+.item:hover{ //pseudo selector
+  background-color:$light-grey;
+  border-left:$item-border-width solid $grey;
+}
+.item--selected,.item--selected:hover{
+  background-color:$light-grey;
+  border-left:$item-border-width solid $brand-primary;
 }
 
-.item__status_message{
-  color:$item-text-color;
+.item__title{
+  font-weight: normal;
+  font-size: $base-font-size;
+  margin-bottom: .4rem;
+}
+
+.item--selected, .item__title{
+  font-weight:bold;
+}
+
+.item__subtitle{
+  color: $dark-grey;
+  margin:0;
+}
+
+.empty-item{
   font-style: italic;
+  padding:$space;
   text-align: center;
-  margin: 0;
 }
