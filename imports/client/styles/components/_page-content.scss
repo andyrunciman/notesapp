@@ -1,18 +1,85 @@
+//media query - designed for mobile up!
+//scss only
+// @mixin funkyBorder {
+//   border: 10px solid orange;
+// }
+// @mixin funkyBorder($borderSize:10px,$borderColor:orange) {
+//   border: $borderSize solid $borderColor;
+//   *{
+//     @content;
+//   }
+// }
+// //mixin called funky background
+// @mixin funkyBackground($backgroundColor:blue){
+//   background-color: $backgroundColor;
+// }
+
+
+
+
 .page-content{
   display:flex;
   margin:0 auto;
   max-width: $site-max-width;
-  padding: $large-space $space;
   height:$page-content-height;
+  //media query
+
+  // @media (min-width:50rem) {
+  //   padding: $large-space $space;
+  // } -> Becomes
+  @include desktop{ //no parenthesies as no parameters.
+    padding: $large-space $space;
+  }
+
+
 }
 
 .page-content__sidebar{
-  display:flex;
+  //display:flex;
+  display:none; //hides the element
   width: $page-content-sidebar-width;
   padding-right: $large-space;
 
+  //inline - applies to the .page-content-sidebar
+  // @media (min-width:50rem) {
+  //   display:flex;
+  // }
+
+  @include desktop{
+    display:flex;
+  }
 }
+
+
+
+// @media (min-width:50rem) { //when the browser has a minimum width of 50
+//   .page-content__sidebar * {
+//     color:red;
+//   }
+// }
+
+// @media (max-width:50rem) and (min-width:30rem) { //when the browser has a minimum width of 50
+//   .page-content__sidebar * {
+//     color:blue;
+//   }
+// }
+
 .page-content__main{
   display:flex;
-  width: $page-content-main-width;
+  width:100%;
+  //width: $page-content-main-width;
+
+
+
+  // @media (min-width:50rem){
+  //   width: $page-content-main-width;
+  //   // @include funkyBorder(){
+  //   //   color:green;
+  //   // };
+  // }
+
+  @include desktop{
+    width: $page-content-main-width;
+  }
+
 }
