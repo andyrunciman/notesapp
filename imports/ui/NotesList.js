@@ -7,7 +7,7 @@ import NotesListItem from './NotesListItem';
 import PropTypes from 'prop-types';
 import NotesListEmptyItem from './NotesListEmptyItem';
 import {Session} from 'meteor/session';
-import Editor from './Editor';
+
 
 export const NotesList = (props) => {
   const renderList = function(){
@@ -16,11 +16,11 @@ export const NotesList = (props) => {
     });
   };
   return (
-    <div>
+    <div className="item-list">
       <NotesListHeader/>
       {props.notes.length === 0? <NotesListEmptyItem/> : undefined}
       {renderList()}
-      <Editor/>
+
     </div>
   );
 };

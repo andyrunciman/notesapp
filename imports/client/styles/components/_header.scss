@@ -1,6 +1,6 @@
 .header{
-  background: $brand-primary;
-  color:white;
+  background: $header-bg;
+  color:$header-color;
 }
 
 .header__content{
@@ -9,6 +9,7 @@
   padding:$space;
   display: flex;
   justify-content: space-between;
+  height:$header-height;
 }
 .header__title{
   margin:0;
