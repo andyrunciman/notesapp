@@ -23,6 +23,8 @@
   margin-bottom: $large-space;
   outline:none;
   resize:none;
+  -webkit-overflow-scrolling:touch;
+
 }
 
 .editor__message{

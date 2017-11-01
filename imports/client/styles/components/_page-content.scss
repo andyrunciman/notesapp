@@ -36,18 +36,31 @@
 
 .page-content__sidebar{
   //display:flex;
-  display:none; //hides the element
-  width: $page-content-sidebar-width;
-  padding-right: $large-space;
+  //display:none; //hides the element
+
 
   //inline - applies to the .page-content-sidebar
   // @media (min-width:50rem) {
   //   display:flex;
   // }
+  display:flex;
+  transition:left .3s ease;
+  width:100vw;
+  position: fixed; //position this relative to the viewport
+  top:$header-height;
+  left:-100vw;
+  right:0;
+  bottom:0;
+  z-index:1; //added to stop a bug in iphone where text box appears on top...
 
   @include desktop{
-    display:flex;
+    position: static;
+    width: $page-content-sidebar-width;
+    padding-right: $large-space;
   }
+}
+.is-nav-open .page-content__sidebar{ //clever, as this targets the sidebat only is the bodyhas been assigned the classis nav open
+  left:0;
 }
 
 
